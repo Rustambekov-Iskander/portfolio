@@ -1,6 +1,14 @@
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import WithProviders from '@/app/providers'
+import { Hydrate } from 'react-query'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const App = ({ Component, pageProps }: AppProps) => {
+	return (
+		<WithProviders>
+			<Hydrate state={pageProps.dehydratedState}>
+				<Component {...pageProps} />
+			</Hydrate>
+		</WithProviders>
+	)
 }
+export default App
