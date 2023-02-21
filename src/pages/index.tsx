@@ -1,24 +1,18 @@
 import React from 'react'
 import { WithLayout } from '@/app/providers/layout'
-import styled from 'styled-components'
-import Board from '@/widgets/2048/board/ui'
+import Board from '@/widgets/2048/board/Board'
+import { NextPageWithLayout } from '@/pages/_app'
 
-const Home = () => {
+const Home: NextPageWithLayout = () => {
 	return (
-		<WithLayout>
-			<Wrapper>
-				<Board />
-			</Wrapper>
-		</WithLayout>
+		<>
+			<Board />
+		</>
 	)
 }
 
-const Wrapper = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #333;
-	padding: 20px;
-`
+Home.getLayout = function getLayout(page) {
+	return <WithLayout>{page}</WithLayout>
+}
 
 export default Home

@@ -1,18 +1,15 @@
 import { Cell } from '@/entities/2048/model/cell'
 import { Grid } from '@/entities/2048/model/grid'
 
-export function slideTiles(
-	groupedCells: any,
-	gameBoard: Grid,
-	update: () => void
-) {
-	groupedCells.forEach((group: any) => slideTilesInGroup(group, update))
+export function slideTiles(groupedCells: Array<Cell[]>, gameBoard: Grid) {
+	groupedCells.forEach((group: any) => slideTilesInGroup(group))
+
 	gameBoard.cells.forEach((cell) => {
 		cell.hasTileForMerge() && cell.mergeTiles()
 	})
 }
 
-function slideTilesInGroup(group: Cell[], update: () => void) {
+function slideTilesInGroup(group: Cell[]) {
 	for (let i = 1; i < group.length; ++i) {
 		if (group[i].isEmpty()) continue
 

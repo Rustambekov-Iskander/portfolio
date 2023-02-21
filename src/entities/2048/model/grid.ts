@@ -1,4 +1,4 @@
-import { Cell } from '@/entities/2048/model/cell'
+import { Cell, Tile } from '@/entities/2048/model'
 
 const GRID_SIZE = 4
 const CELLS_COUNT = GRID_SIZE * GRID_SIZE
@@ -6,16 +6,20 @@ const CELLS_COUNT = GRID_SIZE * GRID_SIZE
 export class Grid {
 	public cells: Cell[]
 
-	public cellsGroupByColumn: Array<any>
-	public cellsGroupByReverseColumn: Array<any>
-	public cellsGroupByRow: Array<any>
-	public cellsGroupByReverseRow: any[][]
+	public cellsGroupByColumn: Array<Cell[]>
+	public cellsGroupByReverseColumn: Array<Cell[]>
+	public cellsGroupByRow: Array<Cell[]>
+	public cellsGroupByReverseRow: Array<Cell[]>
+	public score: number
+	public status: 'defeat' | 'inGame' | 'victory'
 
 	constructor() {
 		this.cells = []
 		for (let i = 0; i < CELLS_COUNT; ++i) {
 			this.cells.push(new Cell(i % GRID_SIZE, Math.floor(i / GRID_SIZE)))
 		}
+
+		// grouping cells
 		this.cellsGroupByColumn = this.groupCellsByColumn()
 		this.cellsGroupByReverseColumn = this.cellsGroupByColumn.map((column) =>
 			[...column].reverse()
@@ -24,6 +28,9 @@ export class Grid {
 		this.cellsGroupByReverseRow = this.cellsGroupByRow.map((column) =>
 			[...column].reverse()
 		)
+		// ================
+		this.score = 0
+		this.status = 'inGame'
 	}
 
 	getRandomEmptyCell() {
@@ -32,8 +39,30 @@ export class Grid {
 		return emptyCells[randomIndex]
 	}
 
+	reset() {
+		const newBoard = new Grid()
+		newBoard.getRandomEmptyCell().linkTile(new Tile())
+		newBoard.getRandomEmptyCell().linkTile(new Tile())
+		this.cells = newBoard.cells
+	}
+
+	getScore() {
+		return this.cells.reduce((score, currentCell) => {
+			return (score += currentCell?.linkedTile?.value || 0)
+		}, 0)
+	}
+
+	getCopyBoard() {
+		const newBoard = new Grid()
+		newBoard.cells = this.cells
+		newBoard.status = this.status
+		newBoard.score = this.getScore()
+		return newBoard
+	}
+
+	// ==== grouping cells ====
 	groupCellsByColumn() {
-		return this.cells.reduce((groupedCells: Array<any>, cell) => {
+		return this.cells.reduce((groupedCells: Array<Cell[]>, cell) => {
 			groupedCells[cell.x] = groupedCells[cell.x] || []
 			groupedCells[cell.x][cell.y] = cell
 			return groupedCells
@@ -41,16 +70,21 @@ export class Grid {
 	}
 
 	groupCellsByRow() {
-		return this.cells.reduce((groupedCells: Array<any>, cell) => {
+		return this.cells.reduce((groupedCells: Array<Cell[]>, cell) => {
 			groupedCells[cell.y] = groupedCells[cell.y] || []
 			groupedCells[cell.y][cell.x] = cell
 			return groupedCells
 		}, [])
 	}
 
-	getCopyBoard() {
-		const newBoard = new Grid()
-		newBoard.cells = this.cells
-		return newBoard
+	defeat() {
+		this.status = 'defeat'
 	}
+	victory() {
+		this.status = 'victory'
+	}
+	inGame() {
+		this.status = 'inGame'
+	}
+	// ========================
 }

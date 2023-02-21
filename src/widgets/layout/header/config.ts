@@ -1,4 +1,4 @@
 export const navList = [
-	{ id: 'home', label: 'Home', pathname: '/' },
 	{ id: 'works', label: 'Works', pathname: '/works' },
+	{ id: 'games', label: 'Games', pathname: '/' },
 ]

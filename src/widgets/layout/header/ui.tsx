@@ -3,6 +3,7 @@ import { AppBar, Container, Typography } from '@mui/material'
 import styled from 'styled-components'
 
 import Link from 'next/link'
+import { navList } from '@/widgets/layout/header/config'
 
 export const Header = () => {
 	return (
@@ -14,9 +15,11 @@ export const Header = () => {
 					</Typography>
 
 					<menu>
-						<Link href={'/'}>
-							<li>Works</li>
-						</Link>
+						{navList.map((nav) => (
+							<Link key={nav.id} href={nav.pathname}>
+								<li>{nav.label}</li>
+							</Link>
+						))}
 					</menu>
 				</HeaderInner>
 			</Container>
