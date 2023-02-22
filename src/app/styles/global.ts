@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     background: rgb(10, 25, 47);
+    color: white;
 
   }
 

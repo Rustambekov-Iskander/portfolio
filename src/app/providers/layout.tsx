@@ -20,5 +20,4 @@ const Wrapper = styled.div`
 	width: 100%;
 	border: 1px solid #64ffda;
 	overflow-y: auto;
-	background-color: #fff;
 `

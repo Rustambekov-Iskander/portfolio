@@ -17,6 +17,7 @@ const Board: React.FC = () => {
 		rerenderBoard()
 		board.getRandomEmptyCell()?.linkTile(new Tile())
 		return () => {
+			window.onkeydown
 			removeInputOnce(board, rerenderBoard)
 		}
 	}, [])

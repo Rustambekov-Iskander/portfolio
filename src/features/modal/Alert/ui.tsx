@@ -26,7 +26,9 @@ export const AlertModal: React.FC<AlertModalProps> = ({
 					<p>{description}</p>
 				</div>
 
-				<Button onClick={handleClose}>Ok</Button>
+				<Button variant={'contained'} onClick={handleClose}>
+					Ok
+				</Button>
 			</Wrapper>
 		</BasicModal>
 	)
@@ -35,4 +37,5 @@ export const AlertModal: React.FC<AlertModalProps> = ({
 const Wrapper = styled.div`
 	display: grid;
 	align-items: center;
+	color: black;
 `

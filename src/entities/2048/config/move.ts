@@ -7,6 +7,7 @@ export const setupInputOnce = (gameBoard: Grid, update: () => void) => {
 		once: true,
 	})
 }
+
 export const removeInputOnce = (gameBoard: Grid, update: () => void) => {
 	window.removeEventListener('keydown', (e) =>
 		handleInput(e, gameBoard, update)
