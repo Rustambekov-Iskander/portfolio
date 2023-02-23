@@ -5,13 +5,7 @@ import { NextPageWithLayout } from '@/pages/_app'
 import { SwipeLayout } from '@/features/swipe'
 
 const Home: NextPageWithLayout = () => {
-	return (
-		<>
-			<SwipeLayout getSwipeDirection={(somth) => {}}>
-				<Board />
-			</SwipeLayout>
-		</>
-	)
+	return <Board />
 }
 
 Home.getLayout = function getLayout(page) {

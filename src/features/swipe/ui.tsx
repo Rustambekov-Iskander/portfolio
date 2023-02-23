@@ -1,12 +1,15 @@
 import React from 'react'
 import { DirectionType } from '@/features/swipe/config'
 
-interface Ui {
+interface SwipeLayoutProps {
 	getSwipeDirection: (direction: DirectionType) => void
 	children: React.ReactNode
 }
 
-export const SwipeLayout: React.FC<Ui> = ({ getSwipeDirection, children }) => {
+export const SwipeLayout: React.FC<SwipeLayoutProps> = ({
+	getSwipeDirection,
+	children,
+}) => {
 	let mouseDown = false
 	let direction: DirectionType | null
 	let x1: number
@@ -18,13 +21,12 @@ export const SwipeLayout: React.FC<Ui> = ({ getSwipeDirection, children }) => {
 		y1 = e.clientY
 	}
 
-	const handleMouseMove = (e: MouseEvent) => {
-		if (!mouseDown) return false
-		if (!x1 || !y1) return false
+	const handleTouchStart = (e: TouchEvent) => {
+		x1 = e.touches[0].clientX
+		y1 = e.touches[0].clientY
+	}
 
-		let x2 = e.clientX
-		let y2 = e.clientY
-
+	const getDirection = (x2: number, y2: number) => {
 		let xDiff = x2 - x1
 		let yDiff = y2 - y1
 
@@ -37,8 +39,28 @@ export const SwipeLayout: React.FC<Ui> = ({ getSwipeDirection, children }) => {
 		}
 	}
 
+	const handleTouchMove = (e: TouchEvent) => {
+		if (!x1 || !y1) return false
+		let x2 = e.touches[0].clientX
+		let y2 = e.touches[0].clientY
+		getDirection(x2, y2)
+	}
+
+	const handleMouseMove = (e: MouseEvent) => {
+		if (!mouseDown) return false
+		if (!x1 || !y1) return false
+
+		let x2 = e.clientX
+		let y2 = e.clientY
+		getDirection(x2, y2)
+	}
+
 	const handleMouseUp = () => {
 		if (mouseDown) mouseDown = false
+		if (direction) getSwipeDirection(direction)
+		direction = null
+	}
+	const handleTouchEnd = () => {
 		if (direction) getSwipeDirection(direction)
 		direction = null
 	}
@@ -47,7 +69,10 @@ export const SwipeLayout: React.FC<Ui> = ({ getSwipeDirection, children }) => {
 		<div
 			onMouseDown={handleMouseDown as any}
 			onMouseMove={handleMouseMove as any}
-			onMouseUp={handleMouseUp as any}
+			onMouseUp={handleMouseUp}
+			onTouchStart={handleTouchStart as any}
+			onTouchMove={handleTouchMove as any}
+			onTouchEnd={handleTouchEnd}
 		>
 			{children}
 		</div>

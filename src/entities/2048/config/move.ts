@@ -1,44 +1,37 @@
 import { Cell, Grid, Tile } from '@/entities/2048/model'
 import { slideTiles } from '@/entities/2048/config/slide-tiles'
 
-export const setupInputOnce = (gameBoard: Grid, update: () => void) => {
-	if (gameBoard.status === 'defeat') return
-	window.addEventListener('keydown', (e) => handleInput(e, gameBoard, update), {
-		once: true,
-	})
-}
+type DirectionType = 'up' | 'right' | 'down' | 'left'
 
-export const removeInputOnce = (gameBoard: Grid, update: () => void) => {
-	window.removeEventListener('keydown', (e) =>
-		handleInput(e, gameBoard, update)
-	)
-}
-
-function handleInput(
-	event: KeyboardEvent,
+export function handleInput(
+	direction: DirectionType,
 	gameBoard: Grid,
 	update: () => void
 ) {
+	gameBoard.groupCellsByColumn()
+	gameBoard.groupCellsByRow()
+
 	if (gameBoard.status === 'defeat') return
+
 	if (
-		!canMove(gameBoard.cellsGroupByColumn) &&
-		!canMove(gameBoard.cellsGroupByReverseColumn) &&
-		!canMove(gameBoard.cellsGroupByRow) &&
-		!canMove(gameBoard.cellsGroupByReverseRow)
+		!canMove(gameBoard.cellsGroupByColumn) && // up
+		!canMove(gameBoard.cellsGroupByReverseColumn) && // down
+		!canMove(gameBoard.cellsGroupByRow) && // left
+		!canMove(gameBoard.cellsGroupByReverseRow) // right
 	) {
 		gameBoard.defeat()
 	} else {
-		switch (event.key) {
-			case 'ArrowUp':
+		switch (direction) {
+			case 'up':
 				moveUp(gameBoard)
 				break
-			case 'ArrowDown':
+			case 'down':
 				moveDown(gameBoard)
 				break
-			case 'ArrowLeft':
+			case 'left':
 				moveLeft(gameBoard)
 				break
-			case 'ArrowRight':
+			case 'right':
 				moveRight(gameBoard)
 				break
 		}

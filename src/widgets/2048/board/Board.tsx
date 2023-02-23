@@ -2,46 +2,51 @@ import React from 'react'
 import styled from 'styled-components'
 import TileComponent from '@/entities/2048/ui/Tile'
 import { Grid, Tile } from '@/entities/2048/model'
-import { removeInputOnce, setupInputOnce } from '@/entities/2048/config'
 import { AlertModal } from '@/features/modal'
+import { SwipeLayout } from '@/features/swipe'
+import { handleInput } from '@/entities/2048/config'
 
 const Board: React.FC = () => {
 	const [board, setBoard] = React.useState(new Grid())
 
 	const rerenderBoard = () => {
 		setBoard(board.getCopyBoard())
-		setupInputOnce(board, rerenderBoard)
 	}
 
 	React.useEffect(() => {
 		rerenderBoard()
 		board.getRandomEmptyCell()?.linkTile(new Tile())
-		return () => {
-			window.onkeydown
-			removeInputOnce(board, rerenderBoard)
-		}
+		board.getRandomEmptyCell()?.linkTile(new Tile())
+
+		return () => setBoard(new Grid())
 	}, [])
 
 	return (
-		<Wrapper>
-			<GameBoard gridSize={4}>
-				{board.cells.map((cell) => (
-					<Cell key={`${cell.x}-${cell.y}`} />
-				))}
+		<SwipeLayout
+			getSwipeDirection={(direction) =>
+				handleInput(direction, board, rerenderBoard)
+			}
+		>
+			<Wrapper>
+				<GameBoard gridSize={4}>
+					{board.cells.map((cell) => (
+						<Cell key={`${cell.x}-${cell.y}`} />
+					))}
 
-				{board.cells.map((cell) =>
-					cell.linkedTile ? (
-						<TileComponent
-							linkedTile={cell.linkedTile}
-							key={cell.linkedTile.id}
-						/>
-					) : null
-				)}
-			</GameBoard>
-			{board.status === 'defeat' ? (
-				<AlertModal title={"You've lost(("} />
-			) : null}
-		</Wrapper>
+					{board.cells.map((cell) =>
+						cell.linkedTile ? (
+							<TileComponent
+								linkedTile={cell.linkedTile}
+								key={cell.linkedTile.id}
+							/>
+						) : null
+					)}
+				</GameBoard>
+				{board.status === 'defeat' ? (
+					<AlertModal title={"You've lost(("} />
+				) : null}
+			</Wrapper>
+		</SwipeLayout>
 	)
 }
 

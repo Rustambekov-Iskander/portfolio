@@ -20,14 +20,11 @@ export class Grid {
 		}
 
 		// grouping cells
-		this.cellsGroupByColumn = this.groupCellsByColumn()
-		this.cellsGroupByReverseColumn = this.cellsGroupByColumn.map((column) =>
-			[...column].reverse()
-		)
-		this.cellsGroupByRow = this.groupCellsByRow()
-		this.cellsGroupByReverseRow = this.cellsGroupByRow.map((column) =>
-			[...column].reverse()
-		)
+		this.cellsGroupByColumn = []
+		this.cellsGroupByReverseColumn = []
+
+		this.cellsGroupByRow = []
+		this.cellsGroupByReverseRow = []
 		// ================
 		this.score = 0
 		this.status = 'inGame'
@@ -41,7 +38,6 @@ export class Grid {
 
 	reset() {
 		const newBoard = new Grid()
-		newBoard.getRandomEmptyCell().linkTile(new Tile())
 		newBoard.getRandomEmptyCell().linkTile(new Tile())
 		this.cells = newBoard.cells
 	}
@@ -62,19 +58,31 @@ export class Grid {
 
 	// ==== grouping cells ====
 	groupCellsByColumn() {
-		return this.cells.reduce((groupedCells: Array<Cell[]>, cell) => {
-			groupedCells[cell.x] = groupedCells[cell.x] || []
-			groupedCells[cell.x][cell.y] = cell
-			return groupedCells
-		}, [])
+		this.cellsGroupByColumn = this.cells.reduce(
+			(groupedCells: Array<Cell[]>, cell) => {
+				groupedCells[cell.x] = groupedCells[cell.x] || []
+				groupedCells[cell.x][cell.y] = cell
+				return groupedCells
+			},
+			[]
+		)
+		this.cellsGroupByReverseColumn = this.cellsGroupByColumn.map((column) =>
+			[...column].reverse()
+		)
 	}
 
 	groupCellsByRow() {
-		return this.cells.reduce((groupedCells: Array<Cell[]>, cell) => {
-			groupedCells[cell.y] = groupedCells[cell.y] || []
-			groupedCells[cell.y][cell.x] = cell
-			return groupedCells
-		}, [])
+		this.cellsGroupByRow = this.cells.reduce(
+			(groupedCells: Array<Cell[]>, cell) => {
+				groupedCells[cell.y] = groupedCells[cell.y] || []
+				groupedCells[cell.y][cell.x] = cell
+				return groupedCells
+			},
+			[]
+		)
+		this.cellsGroupByReverseRow = this.cellsGroupByRow.map((column) =>
+			[...column].reverse()
+		)
 	}
 
 	defeat() {
