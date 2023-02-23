@@ -1,4 +1,4 @@
-import { Tile } from '@/entities/2048/config'
+import { Tile } from '@/entities/2048/model'
 
 type LinkedTileType = Tile | undefined | null
 

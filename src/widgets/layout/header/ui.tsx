@@ -10,7 +10,12 @@ export const Header = () => {
 		<HeaderWrapper position={'static'}>
 			<Container>
 				<HeaderInner>
-					<Typography sx={{ mr: '20px', cursor: 'pointer' }} variant={'h5'}>
+					<Typography
+						component={Link}
+						href={'/'}
+						sx={{ mr: '20px', cursor: 'pointer' }}
+						variant={'h5'}
+					>
 						Iskander Rustambekov
 					</Typography>
 

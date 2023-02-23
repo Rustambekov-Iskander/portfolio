@@ -14,11 +14,8 @@ const Board: React.FC = () => {
 	}
 
 	React.useEffect(() => {
+		board.getRandomEmptyCell()?.linkTile(new Tile())
 		rerenderBoard()
-		board.getRandomEmptyCell()?.linkTile(new Tile())
-		board.getRandomEmptyCell()?.linkTile(new Tile())
-
-		return () => setBoard(new Grid())
 	}, [])
 
 	return (
