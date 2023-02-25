@@ -1,14 +1,27 @@
 import React from 'react'
 import { WithLayout } from '@/app/providers/layout'
-import Board from '@/widgets/2048/board/Board'
 import { NextPageWithLayout } from '@/pages/_app'
-import { ChessBoard } from '@/widgets/chess'
+import { ChessBoardComponent } from '@/widgets/chess'
 import styled from 'styled-components'
+import { ChessBoard } from '@/entities/chess/model'
 
 const Chess: NextPageWithLayout = () => {
+	const [chessBoard, setChessBoard] = React.useState(new ChessBoard())
+
+	const restart = () => {
+		const newBoard = new ChessBoard()
+		newBoard.initCells()
+		newBoard.addFigures()
+		setChessBoard(newBoard)
+	}
+
+	React.useEffect(() => {
+		restart()
+	}, [])
+
 	return (
 		<Wrapper>
-			<ChessBoard />
+			<ChessBoardComponent board={chessBoard} setBoard={setChessBoard} />
 		</Wrapper>
 	)
 }

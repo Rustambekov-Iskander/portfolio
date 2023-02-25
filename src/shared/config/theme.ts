@@ -29,6 +29,7 @@ export const theme = {
 	mqMax,
 	breakpoints,
 	colors: {
+		darkGreen: '#779952',
 		green: '#66ffdb',
 		darkBlue: 'rgb(10, 25, 47)',
 	},

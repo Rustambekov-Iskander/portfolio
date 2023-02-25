@@ -1,1 +1,1 @@
-export * from './ChessBoard'
+export * from './ChessBoardComponent'
