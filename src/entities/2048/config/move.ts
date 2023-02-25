@@ -8,6 +8,7 @@ export function handleInput(
 	gameBoard: Grid,
 	update: () => void
 ) {
+	gameBoard.isVictory()
 	gameBoard.groupCellsByColumn()
 	gameBoard.groupCellsByRow()
 

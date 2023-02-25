@@ -1,5 +1,5 @@
 import React from 'react'
-import { BasicModal } from '@/shared/components/modal/BasicModal'
+import { BasicModal } from '@/shared/components/modal/ui'
 import styled from 'styled-components'
 import { Button } from '@mui/material'
 

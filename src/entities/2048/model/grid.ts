@@ -84,6 +84,7 @@ export class Grid {
 			[...column].reverse()
 		)
 	}
+	// ========================
 
 	defeat() {
 		this.status = 'defeat'
@@ -94,5 +95,13 @@ export class Grid {
 	inGame() {
 		this.status = 'inGame'
 	}
-	// ========================
+
+	isVictory() {
+		for (let i = 0; i < this.cells.length; i++) {
+			if (this.cells[i].linkedTile?.value === 2048) {
+				this.victory()
+				break
+			}
+		}
+	}
 }

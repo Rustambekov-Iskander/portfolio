@@ -19,5 +19,4 @@ export const WithLayout: React.FC<{ children: React.ReactNode }> = ({
 const Wrapper = styled.div`
 	width: 100%;
 	border: 1px solid #64ffda;
-	overflow-y: auto;
 `

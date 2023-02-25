@@ -12,7 +12,9 @@ const Works: NextPageWithLayout = () => {
 				<li>
 					<Link href={'/games/2048'}>2048</Link>
 				</li>
-				<li>Chess</li>
+				<li>
+					<Link href={'/games/chess'}>Chess</Link>
+				</li>
 			</Menu>
 		</Wrapper>
 	)
@@ -23,6 +25,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	min-height: 80vh;
+	text-align: center;
 `
 const Menu = styled.menu`
 	display: grid;

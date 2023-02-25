@@ -5,6 +5,7 @@ import { Grid, Tile } from '@/entities/2048/model'
 import { AlertModal } from '@/features/modal'
 import { SwipeLayout } from '@/features/swipe'
 import { handleInput } from '@/entities/2048/config'
+import { ArrowsKeyDown } from '@/features/keydown/arrows'
 
 const Board: React.FC = () => {
 	const [board, setBoard] = React.useState(new Grid())
@@ -24,6 +25,11 @@ const Board: React.FC = () => {
 				handleInput(direction, board, rerenderBoard)
 			}
 		>
+			<ArrowsKeyDown
+				getDirection={(direction) =>
+					handleInput(direction, board, rerenderBoard)
+				}
+			/>
 			<Wrapper>
 				<GameBoard gridSize={4}>
 					{board.cells.map((cell) => (
@@ -41,6 +47,12 @@ const Board: React.FC = () => {
 				</GameBoard>
 				{board.status === 'defeat' ? (
 					<AlertModal title={"You've lost(("} />
+				) : null}
+
+				{board.status === 'victory' ? (
+					<AlertModal
+						title={"Congratulations, you did it. You're just the best!"}
+					/>
 				) : null}
 			</Wrapper>
 		</SwipeLayout>
