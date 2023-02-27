@@ -28,7 +28,7 @@ export class ChessFigure {
 	}
 
 	canMove(target: ChessCell): boolean {
-		return true
+		return this.color !== target.figure?.color
 	}
 
 	moveFigure(target: ChessCell) {}

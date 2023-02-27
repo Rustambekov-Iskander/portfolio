@@ -1,13 +1,13 @@
-import { ChessCell } from '@/entities/chess/model'
-import { ChessColors } from '@/entities/chess/config'
 import {
+	ChessCell,
 	Bishop,
 	King,
 	Knight,
 	Pawn,
 	Queen,
 	Rook,
-} from '@/entities/chess/model/figures'
+} from '@/entities/chess/model'
+import { ChessColors } from '@/entities/chess/config'
 
 export class ChessBoard {
 	cells: ChessCell[][] = []
@@ -17,16 +17,32 @@ export class ChessBoard {
 			const row: ChessCell[] = []
 			for (let j = 0; j < 8; j++) {
 				if ((i + j) % 2 != 0) {
-					row.push(new ChessCell(this, j, i, ChessColors.BLACK, null)) // black cell
+					row.push(new ChessCell(this, j, i, ChessColors.BLACK, null))
 				} else {
-					row.push(new ChessCell(this, j, i, ChessColors.WHITE, null)) // white cell
+					row.push(new ChessCell(this, j, i, ChessColors.WHITE, null))
 				}
 			}
 			this.cells.push(row)
 		}
 	}
 
-	getCell(x: number, y: number) {
+	public getCopyBoard(): ChessBoard {
+		const newBoard = new ChessBoard()
+		newBoard.cells = this.cells
+		return newBoard
+	}
+
+	public highLightCells(selectedCell: ChessCell | null) {
+		for (let i = 0; i < this.cells.length; i++) {
+			const row: ChessCell[] = this.cells[i]
+			for (let j = 0; j < row.length; j++) {
+				const target = row[j]
+				target.available = !!selectedCell?.figure?.canMove(target)
+			}
+		}
+	}
+
+	public getCell(x: number, y: number) {
 		return this.cells[y][x]
 	}
 
