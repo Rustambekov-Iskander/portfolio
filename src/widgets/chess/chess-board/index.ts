@@ -1,1 +1,1 @@
-export * from './ChessBoardComponent'
+export * from './widget'

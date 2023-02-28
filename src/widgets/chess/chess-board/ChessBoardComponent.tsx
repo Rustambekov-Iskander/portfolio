@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { ChessBoard, ChessCell, ChessPlayer } from '@/entities/chess/model'
 import { ChessCellComponent } from '@/entities/chess/ui'
-import { ChessColors } from '@/entities/chess/config'
 
 interface ChessBoardComponentProps {
 	board: ChessBoard

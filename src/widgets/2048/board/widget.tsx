@@ -7,7 +7,7 @@ import { SwipeLayout } from '@/features/swipe'
 import { handleInput } from '@/entities/2048/config'
 import { ArrowsKeyDown } from '@/features/keydown/arrows'
 
-const Board: React.FC = () => {
+export const Board2048: React.FC = () => {
 	const [board, setBoard] = React.useState(new Grid())
 
 	const rerenderBoard = () => {
@@ -84,5 +84,3 @@ const Cell = styled.div`
 	background-color: #444;
 	border-radius: 1vmin;
 `
-
-export default Board
