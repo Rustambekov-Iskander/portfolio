@@ -12,4 +12,10 @@ export class Rook extends ChessFigure {
 			color === ChessColors.WHITE ? chessImg.whiteRook : chessImg.blackRook
 		this.name = FigureNames.ROOK
 	}
+	canMove(target: ChessCell): boolean {
+		if (!super.canMove(target)) return false
+		if (this.cell.isEmptyVertical(target)) return true
+		if (this.cell.isEmptyHorizontal(target)) return true
+		return false
+	}
 }

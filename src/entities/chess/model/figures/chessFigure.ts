@@ -28,6 +28,7 @@ export class ChessFigure {
 	}
 
 	canMove(target: ChessCell): boolean {
+		if (target.figure?.name === FigureNames.KING) return false
 		return this.color !== target.figure?.color
 	}
 

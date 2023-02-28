@@ -1,16 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChessBoard, ChessCell } from '@/entities/chess/model'
+import { ChessBoard, ChessCell, ChessPlayer } from '@/entities/chess/model'
 import { ChessCellComponent } from '@/entities/chess/ui'
+import { ChessColors } from '@/entities/chess/config'
 
 interface ChessBoardComponentProps {
 	board: ChessBoard
 	setBoard: (board: ChessBoard) => void
+	currentPlayer: ChessPlayer | null
+	changePlayer: () => void
 }
 
 export const ChessBoardComponent: React.FC<ChessBoardComponentProps> = ({
 	board,
 	setBoard,
+	changePlayer,
+	currentPlayer,
 }) => {
 	const [selectedCell, setSelectedCell] = React.useState<ChessCell | null>(null)
 
@@ -23,14 +28,18 @@ export const ChessBoardComponent: React.FC<ChessBoardComponentProps> = ({
 		) {
 			selectedCell.moveFigure(cell)
 			setSelectedCell(null)
+			changePlayer()
 			return
+		} else {
+			// if click twice on the same cell we will clear selectedCell
+			if (cell === selectedCell) setSelectedCell(null)
+			// can only walk with your own figures
+			else if (cell.figure && currentPlayer?.color === cell.figure.color)
+				setSelectedCell(cell)
+
+			// clear selectedCell if click on empty cell
+			if (!cell?.figure && selectedCell) setSelectedCell(null)
 		}
-
-		// if click twice on the same cell we will clear selectedCell
-		else if (cell === selectedCell) setSelectedCell(null)
-		else if (cell?.figure) setSelectedCell(cell)
-
-		// if (!cell?.figure && selectedCell) setSelectedCell(null)
 	}
 
 	const updateBoard = () => {

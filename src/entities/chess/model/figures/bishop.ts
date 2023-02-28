@@ -12,4 +12,10 @@ export class Bishop extends ChessFigure {
 			color === ChessColors.WHITE ? chessImg.whiteBishop : chessImg.blackBishop
 		this.name = FigureNames.BISHOP
 	}
+
+	canMove(target: ChessCell): boolean {
+		if (!super.canMove(target)) return false
+		if (this.cell.isEmptyDiagonal(target)) return true
+		return false
+	}
 }

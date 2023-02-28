@@ -12,4 +12,12 @@ export class King extends ChessFigure {
 			color === ChessColors.WHITE ? chessImg.whiteKing : chessImg.blackKing
 		this.name = FigureNames.KING
 	}
+	canMove(target: ChessCell): boolean {
+		if (!super.canMove(target)) return false
+
+		const absX = Math.abs(target.x - this.cell.x)
+		const absY = Math.abs(target.y - this.cell.y)
+		if (absX <= 1 && absY <= 1) return true
+		return false
+	}
 }

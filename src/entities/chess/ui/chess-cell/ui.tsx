@@ -54,6 +54,7 @@ const Cell = styled.div<CellStyleProps>`
 	justify-content: center;
 
 	img {
+		transition: 0.3s;
 		width: 9vmin;
 		height: 9vmin;
 		object-fit: contain;
