@@ -1,5 +1,4 @@
 import React from 'react'
-import { WithLayout } from '@/app/providers/layout'
 import { NextPageWithLayout } from '@/pages/_app'
 import styled from 'styled-components'
 import {
@@ -8,6 +7,7 @@ import {
 	MainPageSkills,
 	MainPageContacts,
 } from '@/sections-pages/main'
+import { WithLayout } from '@/widgets/layout'
 
 const Home: NextPageWithLayout = () => {
 	return (

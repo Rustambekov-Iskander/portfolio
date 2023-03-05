@@ -6,16 +6,16 @@ interface SimpleCardProps {
 	img?: string
 	title?: string
 	description?: string
-	axis?: 'vertical' | 'horizontal'
+	onClick?: () => void
 }
 export const SimpleCard: React.FC<SimpleCardProps> = ({
 	img,
 	description,
 	title,
-	axis = 'vertical',
+	onClick,
 }) => {
 	return (
-		<Card axis={axis}>
+		<Card onClick={onClick}>
 			{img && (
 				<div>
 					<img src={img} alt="" />
@@ -29,20 +29,19 @@ export const SimpleCard: React.FC<SimpleCardProps> = ({
 	)
 }
 
-interface CardStyleProps {
-	axis: 'vertical' | 'horizontal'
-}
-const Card = styled(CardMui)<CardStyleProps>`
+const Card = styled(CardMui)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-direction: ${({ axis }) => (axis === 'vertical' ? 'column' : 'row')};
+	flex-direction: column;
 	gap: 0 10px;
 	color: white;
 	padding: 20px 25px;
 	background-color: transparent;
 	transition: 0.2s;
 	box-shadow: 0 0 6px black;
+
+	cursor: pointer;
 
 	&:hover {
 		background-color: rgb(0, 0, 0, 0.2);
@@ -52,8 +51,8 @@ const Card = styled(CardMui)<CardStyleProps>`
 	div img {
 		width: 100%;
 		height: 100%;
-		max-width: 200px;
-		max-height: 200px;
+		max-width: 400px;
+		max-height: 400px;
 		object-fit: contain;
 	}
 `

@@ -1,43 +1,21 @@
 import React from 'react'
 import { NextPageWithLayout } from '@/pages/_app'
-import { WithLayout } from '@/app/providers/layout'
-import styled from 'styled-components'
-import { theme } from '@/shared/config'
-import Link from 'next/link'
+import { WithLayout } from '@/widgets/layout'
+import { WorksPageWorksList } from '@/sections-pages/works/works-list'
+import { motion } from 'framer-motion'
+import { standardAnimationVariantAside } from '@/shared/animations'
 
 const Works: NextPageWithLayout = () => {
 	return (
-		<Wrapper>
-			<Menu>
-				<li>
-					<Link href={'/works/2048'}>2048</Link>
-				</li>
-				<li>
-					<Link href={'/works/chess'}>Chess</Link>
-				</li>
-			</Menu>
-		</Wrapper>
+		<motion.div
+			initial={'hidden'}
+			animate={'visible'}
+			variants={standardAnimationVariantAside()}
+		>
+			<WorksPageWorksList />
+		</motion.div>
 	)
 }
-
-const Wrapper = styled.div`
-	display: grid;
-	align-items: center;
-	justify-content: center;
-	min-height: 80vh;
-	text-align: center;
-`
-const Menu = styled.menu`
-	display: grid;
-	gap: 20px 0;
-	li {
-		cursor: pointer;
-		transition: 0.3s;
-		&:hover {
-			color: ${theme.colors.green};
-		}
-	}
-`
 
 Works.getLayout = function (page) {
 	return <WithLayout>{page}</WithLayout>

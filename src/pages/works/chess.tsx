@@ -1,5 +1,5 @@
 import React from 'react'
-import { WithLayout } from '@/app/providers/layout'
+import { WithLayout } from '@/widgets/layout'
 import { NextPageWithLayout } from '@/pages/_app'
 import { ChessBoardWidget } from '@/widgets/chess'
 import styled from 'styled-components'

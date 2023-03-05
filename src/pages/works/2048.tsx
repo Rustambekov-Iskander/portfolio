@@ -1,5 +1,5 @@
 import React from 'react'
-import { WithLayout } from '@/app/providers/layout'
+import { WithLayout } from '@/widgets/layout'
 import { NextPageWithLayout } from '@/pages/_app'
 import { Board2048 } from '@/widgets/2048/board'
 
