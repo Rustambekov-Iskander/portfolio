@@ -1,4 +1,1 @@
-export const navList = [
-	// { id: 'works', label: 'Works', pathname: '/works' },
-	{ id: 'games', label: 'Games', pathname: '/games' },
-]
+export const navList = [{ id: 'works', label: 'Работы', pathname: '/works' }]

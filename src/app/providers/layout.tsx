@@ -17,6 +17,7 @@ export const WithLayout: React.FC<{ children: React.ReactNode }> = ({
 }
 
 const Wrapper = styled.div`
+	max-width: 700px;
 	width: 100%;
-	border: 1px solid #64ffda;
+	margin: 10vh auto;
 `

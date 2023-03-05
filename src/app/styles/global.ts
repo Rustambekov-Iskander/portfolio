@@ -7,15 +7,18 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     scroll-behavior: smooth;
   }
+  
+  h1,h2,h3,h4,h5,h6 {
+    color: #81E6D9;
+  }
 
   body {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'M PLUS Rounded 1c', sans-serif;;
     overflow-x: hidden;
     padding: 0;
     margin: 0;
-    background: rgb(10, 25, 47);
+    background: rgb(32, 32, 35);
     color: white;
-
   }
 
   a {
@@ -43,34 +46,5 @@ export const GlobalStyle = createGlobalStyle`
 
   .fat_text {
     font-weight: 700;
-  }
-
-  .neon-btn {
-    background-color: #fff;
-    border: 2px solid #fff;
-    color: #000;
-    display: inline-block;
-    padding: 1rem 2rem;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    letter-spacing: 2px;
-    font-weight: bold;
-  }
-  .neon-btn:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #7FFF00;
-    z-index: 1;
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    transition: transform 0.5s ease-out;
-  }
-  .neon-btn:hover:before {
-    transform: scaleX(1);
   }
 `

@@ -2,9 +2,24 @@ import React from 'react'
 import { WithLayout } from '@/app/providers/layout'
 import { NextPageWithLayout } from '@/pages/_app'
 import styled from 'styled-components'
+import {
+	MainPageBanner,
+	MainPageAboutMe,
+	MainPageSkills,
+	MainPageContacts,
+} from '@/sections-pages/main'
 
 const Home: NextPageWithLayout = () => {
-	return <Wrapper>Hello world</Wrapper>
+	return (
+		<Wrapper>
+			<div>
+				<MainPageBanner />
+				<MainPageAboutMe />
+				<MainPageSkills />
+				<MainPageContacts />
+			</div>
+		</Wrapper>
+	)
 }
 
 const Wrapper = styled.div`
@@ -12,6 +27,7 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 20px;
 `
 Home.getLayout = function getLayout(page) {
 	return <WithLayout>{page}</WithLayout>

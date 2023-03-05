@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material'
 export const themeMui = createTheme({
 	palette: {
 		primary: {
-			main: '#66ffdb',
+			main: '#81E6D9',
 		},
 	},
 })
@@ -30,8 +30,9 @@ export const theme = {
 	breakpoints,
 	colors: {
 		darkGreen: '#779952',
-		green: '#66ffdb',
+		green: '#81E6D9',
 		darkBlue: 'rgb(10, 25, 47)',
+		pink: '#ff63c3',
 	},
 }
 

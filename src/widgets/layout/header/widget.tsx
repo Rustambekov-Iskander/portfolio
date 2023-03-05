@@ -7,7 +7,7 @@ import { navList } from '@/widgets/layout/header/config'
 
 export const Header = () => {
 	return (
-		<HeaderWrapper position={'static'}>
+		<HeaderWrapper position={'fixed'}>
 			<Container>
 				<HeaderInner>
 					<Typography
@@ -33,7 +33,8 @@ export const Header = () => {
 }
 
 const HeaderWrapper = styled(AppBar)`
-	background: rgb(10, 25, 47, 0.5);
+	width: 100vw !important;
+	background: #20202380;
 	backdrop-filter: blur(5px);
 	box-shadow: none !important;
 	padding: 10px 0;

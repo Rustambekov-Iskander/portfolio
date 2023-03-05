@@ -10,10 +10,10 @@ const Works: NextPageWithLayout = () => {
 		<Wrapper>
 			<Menu>
 				<li>
-					<Link href={'/games/2048'}>2048</Link>
+					<Link href={'/works/2048'}>2048</Link>
 				</li>
 				<li>
-					<Link href={'/games/chess'}>Chess</Link>
+					<Link href={'/works/chess'}>Chess</Link>
 				</li>
 			</Menu>
 		</Wrapper>
