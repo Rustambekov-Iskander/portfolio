@@ -6,9 +6,13 @@ import { worksList } from '@/sections-pages/works/config'
 import { WorkDetail } from '@/sections-pages/works'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const paths = Object.values(worksList).map((work) => ({
-		params: { id: work.link },
-	}))
+	const paths = []
+	const worksListArray = Object.values(worksList)
+	for (let i = 0; i < worksListArray.length; i++) {
+		if (worksListArray[i].link !== '2048' && worksListArray[i].link !== 'chess')
+			paths.push({ params: { id: worksListArray[i].link } })
+	}
+
 	return {
 		paths,
 		fallback: false,
