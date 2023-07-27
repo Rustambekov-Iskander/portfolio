@@ -13,6 +13,7 @@ export const MainPageAboutMe = () => {
 					variants={standardAnimationVariantAside('x')}
 					initial={'hidden'}
 					whileInView={'visible'}
+					viewport={{ once: true }}
 					textAlign={i % 2 === 0 ? 'left' : 'right'}
 					key={card.id}
 					custom={i}

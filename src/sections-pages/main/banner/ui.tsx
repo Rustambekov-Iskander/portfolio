@@ -8,12 +8,13 @@ import { useRouter } from 'next/router'
 export const MainPageBanner = () => {
 	const { push } = useRouter()
 	return (
-		<Wrapper>
+		<Wrapper id="main-banner-section">
 			<div style={{ marginTop: '-10vh' }}>
 				<motion.h2
 					initial={'hidden'}
 					whileInView={'visible'}
 					variants={standardAnimationVariantAside()}
+					viewport={{ once: true }}
 					custom={1}
 				>
 					Hello world!
@@ -23,15 +24,17 @@ export const MainPageBanner = () => {
 					initial={'hidden'}
 					whileInView={'visible'}
 					variants={standardAnimationVariantAside()}
+					viewport={{ once: true }}
 					custom={2}
 				>
-					Я Frontend разработчик из Бишкека (Кыргызстан)
+					Меня зовут Искендер и я Frontend разработчик из Кыргызстана
 				</motion.h3>
 				<Button
 					component={motion.div}
 					initial={'hidden'}
 					whileInView={'visible'}
 					variants={standardAnimationVariantAside()}
+					viewport={{ once: true }}
 					custom={3}
 					variant={'contained'}
 					onClick={() => push('/works')}
@@ -43,7 +46,7 @@ export const MainPageBanner = () => {
 	)
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
 	height: 90vh;
 	display: flex;
 	align-items: center;

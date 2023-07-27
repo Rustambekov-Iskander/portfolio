@@ -12,6 +12,7 @@ export const MainPageSkills = () => {
 				variants={standardAnimationVariant}
 				initial={'hidden'}
 				whileInView={'visible'}
+				viewport={{ once: true }}
 				custom={0}
 			>
 				Ключевые навыки
@@ -26,6 +27,7 @@ export const MainPageSkills = () => {
 						component={motion.div}
 						key={skill.title}
 						label={skill.title}
+						viewport={{ once: true }}
 						sx={{
 							backgroundColor: skill.color,
 							color: 'white',

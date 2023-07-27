@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Container, Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import styled from 'styled-components'
 
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import { navList } from '@/widgets/layout/header/config'
 
 export const Header = () => {
 	return (
-		<HeaderWrapper position={'fixed'}>
+		<HeaderWrapper>
 			<Container>
 				<HeaderInner>
 					<Typography
@@ -32,7 +32,11 @@ export const Header = () => {
 	)
 }
 
-const HeaderWrapper = styled(AppBar)`
+const HeaderWrapper = styled.header`
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
 	width: 100vw !important;
 	background: #20202380;
 	backdrop-filter: blur(5px);

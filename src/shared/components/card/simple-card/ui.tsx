@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card as CardMui } from '@mui/material'
 import styled from 'styled-components'
+import Image from 'next/image'
 
 interface SimpleCardProps {
 	img?: string
@@ -16,11 +17,7 @@ export const SimpleCard: React.FC<SimpleCardProps> = ({
 }) => {
 	return (
 		<Card onClick={onClick}>
-			{img && (
-				<div>
-					<img src={img} alt="" />
-				</div>
-			)}
+			{img ? <Image width={400} height={400} src={img} alt="" /> : null}
 			<div>
 				<h4>{title}</h4>
 				<p>{description}</p>
@@ -48,7 +45,7 @@ const Card = styled(CardMui)`
 		box-shadow: none;
 	}
 
-	div img {
+	img {
 		width: 100%;
 		height: 100%;
 		max-width: 400px;

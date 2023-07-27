@@ -7,6 +7,35 @@ export interface IWork {
 }
 
 export const worksList: Record<string, IWork> = {
+	getByVerto: {
+		title: 'GetByVerto',
+		link: 'getByVerto',
+		text: `
+		Многообещающий стартап маркетплейс с бартерной системой оплаты. 
+		Который все еще находится на этапе разработки
+		`,
+		stack: [
+			'Архитектура FSD',
+			'NextJS',
+			'Typescript',
+			'Zustand',
+			'React-query',
+			'Framer-motion',
+			'Formik / Yup',
+			'tailwind',
+		],
+		images: [
+			{
+				link: '/assets/works/getByVerto/main.png',
+				alt: 'main page',
+			},
+			{
+				link: '/assets/works/getByVerto/product.png',
+				alt: 'detail page',
+			},
+		],
+	},
+
 	game2048: {
 		title: '2048',
 		link: '2048',
@@ -75,8 +104,8 @@ export const worksList: Record<string, IWork> = {
 		title: 'Aiyl-Bank',
 		link: 'bank',
 		text: `
-		Веб-приложение для подсчета бюджетирования филиалов - это онлайн-инструмент, 
-		который позволяет распределять бюджет между различными филиалами. 
+		Веб-приложение для подсчета бюджетирования филиалов.
+		Мини exel со сложной системой перетаскивания и автоматического заполнения полей как в exel на фронте
 		С помощью этого приложения можно отслеживать доходы и расходы каждого филиала, определять, 
 		какие из них приносят больше доходов, и какие нуждаются в большей финансовой поддержке.
 		`,

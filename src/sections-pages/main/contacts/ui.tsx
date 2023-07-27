@@ -12,6 +12,7 @@ export const MainPageContacts = () => {
 				variants={standardAnimationVariantAside('y', 100)}
 				initial={'hidden'}
 				whileInView={'visible'}
+				viewport={{ once: true }}
 				custom={0}
 			>
 				Контакты
@@ -21,6 +22,7 @@ export const MainPageContacts = () => {
 					variants={standardAnimationVariantAside('y', 100)}
 					initial={'hidden'}
 					whileInView={'visible'}
+					viewport={{ once: true }}
 					custom={i + 1}
 				>
 					{title}: <span>{contact}</span>

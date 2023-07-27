@@ -9,4 +9,7 @@ export const core_skills = [
 	{ title: 'React Query(Tanstack)', color: '#FD8A8A' },
 	{ title: 'Redux', color: '#764abc' },
 	{ title: 'Redux-toolkit', color: '#764abc' },
+	{ title: 'Zustand', color: '#333333' },
+	{ title: 'Tailwind', color: '#DC2626' },
+	{ title: 'Framer-motion', color: '#0055FF' },
 ]
